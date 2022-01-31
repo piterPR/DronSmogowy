@@ -1,0 +1,86 @@
+<div class="main">
+    
+    <div class="googlemaps"> 
+        <div id="map" class="map"></div>
+    </div>
+    <div class="panel">
+        <div class="panel-info">
+            <i class="las la-city"></i>
+            <div class="panel-info-details">
+                <div>
+                    <p>Miasto</p>
+                    <a>{{scanedData?.cityName}}</a>
+                </div>
+                <div>
+                    <p>Powierzchnia miasta</p>
+                    <a>{{scanedData?.citySurfaceAreaInKilometerSquared}} km²</a>
+                </div>
+                <div>
+                    <p>Populacja</p>
+                    <a>{{scanedData?.cityPopulation}}</a>
+                </div>
+                <div>
+                    <p>Gęstość zaludnienia</p>
+                    <a>{{scanedData?.personDensityPerKilometer | number: '1.1-2'}} per. / km²</a>
+                </div>
+            </div>
+        </div>
+        <div class="panel-info">
+            <i class="las la-smog"></i>
+            <div class="panel-info-details">
+                <p class="grid-col-1-2">{{todayDateString}}</p>
+                <div>
+                    <p>Średnie PM 2,5</p>
+                    <a>{{scanedData?.pm25 ? scanedData?.pm25 : '---'}} µg/m³</a>
+                </div>
+                <div>
+                    <p>Średnie PM 10</p>
+                    <a>{{ scanedData?.pm10 ? scanedData?.pm10 : '---'}} µg/m³</a>
+                </div>
+                <div>
+                    <p>Średnia Wilgotność</p>
+                    <a>{{scanedData?.humidity ? scanedData?.humidity : '---' }} %</a>
+                </div>
+                <div>
+                    <p>Średnie ciśnienie</p>
+                    <a>{{scanedData?.hPa ? scanedData?.hPa : '---' }} hPa</a>
+                </div>
+                <div>
+                    <p>Średnia temperatura</p>
+                    <a>{{scanedData?.temperature ? scanedData?.temperature : '---'}} °C</a>
+                </div>
+                <div>
+                    <p>Średnie IAQ</p>
+                    <a>{{ scanedData?.IAQ ? scanedData?.IAQ : '---'}} µg/m³</a>
+                </div>
+
+                <button class="grid-col-1-2" (click)="runMigration(name.value)"><i class="las la-upload"></i>Migracja  danych</button>
+               
+                <div class = "input"><input  type="text" #name placeholder="Nazwa tabeli w bazie danych"> </div>
+                
+                
+                <button class="grid-col-1-2" (click)="openChart()"><i class="las la-chart-line"></i>WYKRESY pomiarowe</button>
+                {{response}}
+                
+              
+                
+                
+                
+            </div>
+        </div>
+        <div class="panel-info">
+            <i class="las la-exclamation-triangle"></i>
+            <div class="panel-info-details">
+                <div class="grid-col-1-2">
+                    <div class="risk">
+                        <p>Jakość powietrza</p>
+                        <a [ngClass]="{'risk-medium': scanedData?.airQuality === 'Średnia', 'risk-high': scanedData?.airQuality === 'Zła'}">{{scanedData?.airQuality}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer">  
+            <img src="../../assets/logo_weii.png" (click)="openUrl('https://weii.prz.edu.pl/')">
+            <p (click)="openUrl('https://github.com/piterPR/Dron-Smogowy-')">Link do repozytorium <i class="lab la-github"></i></p>
+        </div>
+    </div>

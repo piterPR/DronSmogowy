@@ -1,0 +1,13 @@
+@ECHO OFF 
+:: This batch file details Windows 10, hardware, and networking configuration.
+TITLE Aplikacja Dron smogowy
+ECHO Uruchamiam skrypt .py do migraji najnowszych danych z GCP 
+:: Section 1: Windows 10 information
+ECHO ==========================
+ECHO migration.py
+ECHO ============================
+ECHO %cd%
+CD "C:\Users\Admin\Desktop\NASA-Space-App-main\python_scripts"
+python migration.py
+
+PAUSE

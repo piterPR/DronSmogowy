@@ -1,0 +1,24 @@
+<div class="background" (click)="decide(false)" [style.visibility]="context ? 'visible' : 'hidden'" [ngClass]="{'start': context}">
+    <div class="dialog-container" [ngClass]="{'anim': context}" (click)="dummy($event)">
+        <div class="context-container">
+            <button (click)="decide(false)" *ngIf="context">Zamknij</button>
+            <label>Wykresy</label>
+            <ng-container *ngIf="{open: 0} as variable">
+                <div class="options">
+                    <button (click)="variable.open = 0" *ngIf="context">PM 2,5</button>
+                    <button (click)="variable.open = 1" *ngIf="context">PM 10</button>
+                    <button (click)="variable.open = 2" *ngIf="context">Wilgotność (%)</button>
+                    <button (click)="variable.open = 3" *ngIf="context">Ciśnienie (hPa)</button>
+                    <button (click)="variable.open = 4" *ngIf="context">Temperatura</button>
+                    <button (click)="variable.open = 5" *ngIf="context">IAQ</button>
+                </div>
+                <div echarts [options]="options_pm25" class="chart" *ngIf="variable.open === 0"></div>
+                <div echarts [options]="options_pm10" class="chart" *ngIf="variable.open === 1"></div>
+                <div echarts [options]="options_humidity" class="chart" *ngIf="variable.open === 2"></div>
+                <div echarts [options]="options_hPa" class="chart" *ngIf="variable.open === 3"></div>
+                <div echarts [options]="options_temperature" class="chart" *ngIf="variable.open === 4"></div>
+                <div echarts [options]="options_iaq" class="chart" *ngIf="variable.open === 5"></div>
+            </ng-container>
+        </div>
+    </div>
+</div>

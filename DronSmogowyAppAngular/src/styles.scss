@@ -1,0 +1,91 @@
+@import '../src/app/scss/colors';
+@import '../src/app/scss/variables';
+@import '../src/app/scss/toastr';
+@import '~leaflet/dist/leaflet.css';
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+@media only screen and (max-width: $max-width-1) {
+    html {
+        font-size: 62%;
+    }
+}
+
+@media only screen and (max-width: $max-width-2) {
+    html {
+        font-size: 57%;
+    }
+}
+
+@media only screen and (max-width: $max-width-3) {
+    html {
+        font-size: 52%;
+    }
+}
+
+@media only screen and (max-width: $max-width-4) {
+    html {
+        font-size: 47%;
+    }
+}
+
+@media only screen and (max-width: $max-width-5) {
+    html {
+        font-size: 43%;
+    }
+}
+
+@media only screen and (max-width: $max-width-7) {
+    html {
+        font-size: 40%;
+    }
+}
+
+body {
+    box-sizing: border-box;
+    width: 100vw;
+    height: auto;
+    font-family: 'Dosis', sans-serif;
+    background-color: $color-primary;
+    color: $color-white;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+button {
+    &,
+    &:link,
+    &:visited {
+        border-radius: 2rem;
+        box-shadow: 0 0.2rem 2rem rgba($color-primary, 0.5);
+        font-size: 2rem;
+        padding: 1.8rem;
+        letter-spacing: 0.2rem;
+        text-transform: uppercase;
+        border: none;
+        cursor: pointer;
+        transition: all ease-out 0.1s, box-shadow ease-in 0.4s, background-position ease-in 0.2s;
+        text-decoration: none;
+        font-family: $default-font;
+        align-self: flex-end;
+        padding: 1rem;
+        background-color: $color-primary;
+        color: white;
+        margin-right: 1.5rem;
+    }
+    &:focus {
+        outline: none;
+        &:active {
+            transform: translateY(3px);
+        }
+    }
+}
