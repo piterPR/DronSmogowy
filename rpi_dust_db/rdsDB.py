@@ -5,15 +5,15 @@ import collections
 
 class database_handler:
     def __init__(self):
-        self.db = pymysql.connect(host='35.187.87.235',
+        self.db = pymysql.connect(host='xxxxxxxxxxxxxxxxxxxxxxx',
                              user='root',
                              password='eFBlUqBF1pCbcignLJPd',
                              database='dron_smogowy',
                              charset='utf8mb4',
                              cursorclass=pymysql.cursors.DictCursor,
-                             ssl_ca= '/home/pi/final/server-ca.pem',
-                             ssl_cert = '/home/pi/final/client-cert.pem',
-                             ssl_key = '/home/pi/final/client-key.pem')
+                             ssl_ca= 'xxxxxxxxxxxxxxx',
+                             ssl_cert = 'xxxxxxxxxxxxxxxxxxxx',
+                             ssl_key = 'xxxxxxxxxxxxxxxxxx')
  
 
 
