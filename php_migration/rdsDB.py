@@ -5,15 +5,15 @@ import collections
 
 class database_handler:
     def __init__(self):
-        self.db = pymysql.connect(host='35.187.87.235',
+        self.db = pymysql.connect(host='X.X.X.X',
                              user='root',
                              password='eFBlUqBF1pCbcignLJPd',
                              database='dron_smogowy',
                              charset='utf8mb4',
                              cursorclass=pymysql.cursors.DictCursor,
-                             ssl_ca= 'C:/Users/Admin/PycharmProjects/DronSmogowy/server-ca.pem',
-                             ssl_cert = 'C:/Users/Admin/PycharmProjects/DronSmogowy/client-cert.pem',
-                             ssl_key = 'C:/Users/Admin/PycharmProjects/DronSmogowy/client-key.pem')
+                             ssl_ca= 'XXXXXXXXXXX',
+                             ssl_cert = 'XXXXXXXXXXXXXXXXX',
+                             ssl_key = 'XXXXXXXXXXXXXXXXXX')
         self.path_json_file = 'C:/Users/Admin/PycharmProjects/DronSmogowy/DronSmogowyAppAngular/src/app/main/chart/chart_data2.json'
 
 
