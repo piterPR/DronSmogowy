@@ -45,9 +45,9 @@ start_time = time.time()
 curr_time = time.time()
 burn_in_time = 10
 burn_in_data = []
-id_measurement = 1
+#id_measurement = 1
 to_continue = True
-drondb = database_handler()
+# drondb = database_handler()
 ledRED.on()
 
 
@@ -58,12 +58,12 @@ if __name__=="__main__":
             ledGR.on()
             last_print = time.monotonic()
             sds = sds_reader()
-            ts = time.time()
-            timestamp = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
-            timestampDB = timestamp.replace('-','_').replace(' ','_').replace(':','_')
-            tb_name = "measurements" + str(timestampDB)
-            tb_name = tb_name.replace('-','_')
-            drondb.create_new_table_into_db(tb_name)
+            #ts = time.time()
+            #timestamp = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
+            #timestampDB = timestamp.replace('-','_').replace(' ','_').replace(':','_')
+            #tb_name = "measurements" + str(timestampDB)
+            #tb_name = tb_name.replace('-','_')
+            #drondb.create_new_table_into_db(tb_name)
 
             
             try:
@@ -135,10 +135,10 @@ if __name__=="__main__":
                                 print("-------------------------------------------------------------------------")
                                 
                                 #Zapis do bazy danych RDS isteniejącej na usługach chumorowych AWS  
-                                drondb.insert_values_measurement(tb_name,id_measurement,dust[0],dust[1],sensor.data.humidity,sensor.data.pressure,sensor.data.temperature,air_quality_score,timestamp)
+                                #drondb.insert_values_measurement(tb_name,id_measurement,dust[0],dust[1],sensor.data.humidity,sensor.data.pressure,sensor.data.temperature,air_quality_score,timestamp)
                                 
                                 #ins.insert_values_localization(tb_name,id_measurement,50.238424224,55.238424224,7)
-                                id_measurement+=1
+                                #id_measurement+=1
                                 
                                 # air_quality_score = round(air_quality_score, 2)
                                 # dict = {'hour':gps.timestamp_utc.tm_hour,'min':gps.timestamp_utc.tm_min,'sec':gps.timestamp_utc.tm_sec,'PM10':data[0],'PM25':data[1],'IAQ':air_quality_score,'Cisn':sensor.data.pressure,'Temp':sensor.data.temperature}
