@@ -4,7 +4,7 @@ import board
 import busio
 import serial
 from sds_reader import sds_reader
-from rdsDB import database_handler
+# from rdsDB import database_handler
 from gpiozero import LED, Button
 
 
