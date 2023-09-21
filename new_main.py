@@ -1,4 +1,4 @@
-import time, json, datetime, board, busio, serial, bme680
+import time, json, datetime, board, busio, serial, bme680, requests
 from sds_reader import sds_reader
 #import board
 #import busio
@@ -9,7 +9,7 @@ from sds_reader import sds_reader
 
 
 
-
+API_URL="http://test.com"
 start_time = time.time()
 curr_time = time.time()
 burn_in_time = 10
@@ -38,7 +38,7 @@ def print_stdout_values(pm):
         print("-------------------------------------------------------------------------")
         
 
-def print_json_value(pm):
+def send_json_value(PM,API_URL):
     dictionary = {
         "measurement": "dron_smogowy_1",
         "lng": 56,
@@ -47,13 +47,14 @@ def print_json_value(pm):
         "humidity": sensor.data.humidity,
         "iaq": air_quality_score,
         "pressue": sensor.data.pressure,
-        "pm10": pm[0],
-        "pm25": pm[1]
+        "pm10": PM[0],
+        "pm25": PM[1]
     }
 
-    json_ready = json.dumps(dictionary, indent=4)
-    print(json_ready)
-
+    ready_json = json.dumps(dictionary, indent=9)
+    r = requests.post(API_URL, ready_json)
+    print(ready_json)
+    print(f"Status Code: {r.status_code}, Response: {r.json()}")
 
 
 if __name__=="__main__":
@@ -111,9 +112,9 @@ if __name__=="__main__":
         # odczyt paramsów 
         try:
             while True:
-                pm = sds.read_dust()
-                print_stdout_values(pm)
-                print_json_value(pm)
+                PM = sds.read_dust()
+                print_stdout_values(PM, API_URL)
+                send_json_value(PM, API_URL)
         except KeyboardInterrupt:
             print('interrupted!')
 
