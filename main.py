@@ -65,11 +65,11 @@ def print_stdout_values(PM,MAVLINK):
     print("-------------------------------------------------------------------------")
         
 
-def send_json_value(PM,API_URL):
+def send_json_value(PM,API_URL,GPS):
     dictionary = {
         "measurement": "dron_smogowy_1",
-        "lng": 56,
-        "lay": 8.6,
+        "lng": GPS.lng,
+        "lan": GPS.lan,
         "temperature": sensor.data.temperature,
         "humidity": sensor.data.humidity,
         "iaq": air_quality_score,
@@ -144,7 +144,7 @@ if __name__=="__main__":
                 # PM = sds.read_dust()
                 # GPS = read_mavlink()
                 # print_stdout_values(PM)
-                # send_json_value(PM, API_URL)
+                # send_json_value(PM, API_URL,GPS)
                 read_mavlink()
         except KeyboardInterrupt:
             print('interrupted!')
