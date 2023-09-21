@@ -90,7 +90,6 @@ if __name__=="__main__":
         
         if current - last_print >= 1.0:
             last_print = current
-            ledGR.off()
             dust = sds.read_dust()
             print("PM 10: {} μg/m3".format(dust[0]))
             print("PM 2.5: {} μg/m3".format(dust[1])) 
