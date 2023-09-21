@@ -4,7 +4,7 @@ from pymavlink import mavutil
 from pymavlink import mavutil
 
 # Start a connection listening to a UDP port
-the_connection = mavutil.mavlink_connection('/dev/ttyACM0')
+the_connection = mavutil.mavlink_connection('/dev/ttyAMA0')
 
 # Wait for the first heartbeat 
 #   This sets the system and component ID of remote system for the link
