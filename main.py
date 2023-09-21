@@ -134,18 +134,6 @@ if __name__=="__main__":
                                 print('Pressure : {0:.2f} hPa'.format(sensor.data.pressure))
                                 print("-------------------------------------------------------------------------")
                                 
-                                #Zapis do bazy danych RDS isteniejącej na usługach chumorowych AWS  
-                                #drondb.insert_values_measurement(tb_name,id_measurement,dust[0],dust[1],sensor.data.humidity,sensor.data.pressure,sensor.data.temperature,air_quality_score,timestamp)
-                                
-                                #ins.insert_values_localization(tb_name,id_measurement,50.238424224,55.238424224,7)
-                                #id_measurement+=1
-                                
-                                # air_quality_score = round(air_quality_score, 2)
-                                # dict = {'hour':gps.timestamp_utc.tm_hour,'min':gps.timestamp_utc.tm_min,'sec':gps.timestamp_utc.tm_sec,'PM10':data[0],'PM25':data[1],'IAQ':air_quality_score,'Cisn':sensor.data.pressure,'Temp':sensor.data.temperature}
-                                # df = pd.DataFrame(dict,index=[0])
-                                #saving
-                                #df.to_csv('danetry.csv')
-                                #df.to_csv('dane1.csv', header=None, mode='a')
                     else:
                         ledRED.on()
                         print("Włącz przycisk")
