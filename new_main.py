@@ -28,9 +28,9 @@ try:
 except IOError:
     sensor = bme680.BME680(bme680.I2C_ADDR_PRIMARY)
 
-def print_stdout_values(pm):
-        print("PM 10: {} μg/m3".format(pm[0]))
-        print("PM 2.5: {} μg/m3".format(pm[1])) 
+def print_stdout_values(PM):
+        print("PM 10: {} μg/m3".format(PM[0]))
+        print("PM 2.5: {} μg/m3".format(PM[1])) 
         print('Temperature : {0:.2f} C'.format(sensor.data.temperature))
         print('Humidity : {0:.2f} %RH'.format(sensor.data.humidity))
         print('IAQ : {0:.2f}'.format(air_quality_score))
@@ -113,7 +113,7 @@ if __name__=="__main__":
         try:
             while True:
                 PM = sds.read_dust()
-                print_stdout_values(PM, API_URL)
+                print_stdout_values(PM)
                 send_json_value(PM, API_URL)
         except KeyboardInterrupt:
             print('interrupted!')
