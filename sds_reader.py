@@ -5,7 +5,7 @@ import time
 
 class sds_reader:
     def __init__(self):
-        self.ser = serial.Serial('/dev/ttyS0',baudrate=9600)
+        self.ser = serial.Serial('/dev/ttyAMA0',baudrate=9600)
 
     def read_dust(self):
         

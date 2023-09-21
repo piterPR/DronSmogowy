@@ -30,8 +30,8 @@ try:
     sensor.set_gas_heater_duration(150)
     sensor.select_gas_heater_profile(0)
     # MAVLINK
-    mavlink_data = mavutil.mavlink_connection('/dev/ttyACM0')
-    mavlink_data.wait_heartbeat()
+    # mavlink_data = mavutil.mavlink_connection('/dev/ttyACM0')
+    # mavlink_data.wait_heartbeat()
 
 
 except IOError:
