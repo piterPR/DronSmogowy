@@ -4,18 +4,12 @@ import board
 import busio
 import serial
 from sds_reader import sds_reader
-from gpiozero import LED, Button
-
-
 import bme680
 import time
 import csv 
 
 
-try:
-    sensor = bme680.BME680(bme680.I2C_ADDR_SECONDARY)
-except IOError:
-    sensor = bme680.BME680(bme680.I2C_ADDR_PRIMARY)
+
 
 sensor.set_humidity_oversample(bme680.OS_2X)
 sensor.set_pressure_oversample(bme680.OS_4X)
@@ -32,7 +26,22 @@ start_time = time.time()
 curr_time = time.time()
 burn_in_time = 10
 burn_in_data = []
-#id_measurement = 1
+
+try:
+    sensor = bme680.BME680(bme680.I2C_ADDR_SECONDARY)
+except IOError:
+    sensor = bme680.BME680(bme680.I2C_ADDR_PRIMARY)
+
+def print_stdout_values():
+        dust = sds.read_dust()
+        print("PM 10: {} μg/m3".format(dust[0]))
+        print("PM 2.5: {} μg/m3".format(dust[1])) 
+        print('Temperature : {0:.2f} C'.format(sensor.data.temperature))
+        print('Humidity : {0:.2f} %RH'.format(sensor.data.humidity))
+        print('IAQ : {0:.2f}'.format(air_quality_score))
+        print('Pressure : {0:.2f} hPa'.format(sensor.data.pressure))
+        print("-------------------------------------------------------------------------")
+        
 
 
 if __name__=="__main__":
@@ -86,16 +95,11 @@ if __name__=="__main__":
         air_quality_score = hum_score + gas_score
         time.sleep(1)
 
-        current = time.monotonic()
-        
-        if current - last_print >= 1.0:
-            last_print = current
-            dust = sds.read_dust()
-            print("PM 10: {} μg/m3".format(dust[0]))
-            print("PM 2.5: {} μg/m3".format(dust[1])) 
-            print('Temperature : {0:.2f} C'.format(sensor.data.temperature))
-            print('Humidity : {0:.2f} %RH'.format(sensor.data.humidity))
-            print('IAQ : {0:.2f}'.format(air_quality_score))
-            print('Pressure : {0:.2f} hPa'.format(sensor.data.pressure))
-            print("-------------------------------------------------------------------------")
-            
+
+        # root programu 
+        try:
+            while True:
+                print_stdout_values()
+        except KeyboardInterrupt:
+            print('interrupted!')
+
