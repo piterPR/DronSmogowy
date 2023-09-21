@@ -7,6 +7,11 @@ from sds_reader import sds_reader
 from gpiozero import LED, Button
 
 
+import bme680
+import time
+import csv 
+
+
 try:
     sensor = bme680.BME680(bme680.I2C_ADDR_SECONDARY)
 except IOError:
