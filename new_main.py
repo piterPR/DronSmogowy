@@ -52,9 +52,11 @@ def send_json_value(PM,API_URL):
     }
 
     ready_json = json.dumps(dictionary, indent=9)
-    r = requests.post(API_URL, ready_json)
     print(ready_json)
-    print(f"Status Code: {r.status_code}, Response: {r.json()}")
+
+    # Wyslij request do API 
+    # r = requests.post(API_URL, ready_json)
+    # print(f"Status Code: {r.status_code}, Response: {r.json()}")
 
 
 if __name__=="__main__":
