@@ -1,12 +1,11 @@
-import time
-import datetime
-import board
-import busio
-import serial
+import time, json, datetime, board, busio, serial, bme680
 from sds_reader import sds_reader
-import bme680
-import time
-import csv 
+#import board
+#import busio
+#import serial
+
+#import bme680
+#import time
 
 
 
@@ -29,16 +28,32 @@ try:
 except IOError:
     sensor = bme680.BME680(bme680.I2C_ADDR_PRIMARY)
 
-def print_stdout_values():
-        dust = sds.read_dust()
-        print("PM 10: {} μg/m3".format(dust[0]))
-        print("PM 2.5: {} μg/m3".format(dust[1])) 
+def print_stdout_values(pm):
+        print("PM 10: {} μg/m3".format(pm[0]))
+        print("PM 2.5: {} μg/m3".format(pm[1])) 
         print('Temperature : {0:.2f} C'.format(sensor.data.temperature))
         print('Humidity : {0:.2f} %RH'.format(sensor.data.humidity))
         print('IAQ : {0:.2f}'.format(air_quality_score))
         print('Pressure : {0:.2f} hPa'.format(sensor.data.pressure))
         print("-------------------------------------------------------------------------")
         
+
+def print_json_value(pm):
+    dictionary = {
+        "measurement": "dron_smogowy_1",
+        "lng": 56,
+        "lay": 8.6,
+        "temperature": sensor.data.temperature,
+        "humidity": sensor.data.humidity,
+        "iaq": air_quality_score,
+        "pressue": sensor.data.pressure,
+        "pm10": pm[0],
+        "pm25": pm[1]
+    }
+
+    json_ready = json.dumps(dictionary, indent=4)
+    print(json_ready)
+
 
 
 if __name__=="__main__":
@@ -93,10 +108,12 @@ if __name__=="__main__":
         time.sleep(1)
 
 
-        # root programu 
+        # odczyt paramsów 
         try:
             while True:
-                print_stdout_values()
+                pm = sds.read_dust()
+                print_stdout_values(pm)
+                print_json_value(pm)
         except KeyboardInterrupt:
             print('interrupted!')
 
